@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Register</h2>
+  <form method="post">
+    <p>
+      <label for="username">Username</label><br>
+      <input id="username" name="username" type="text" maxlength="30" required>
+    </p>
+    <p>
+      <label for="password">Password</label><br>
+      <input id="password" name="password" type="password" required>
+    </p>
+    <p>
+      <label for="confirm_password">Confirm Password</label><br>
+      <input id="confirm_password" name="confirm_password" type="password" required>
+    </p>
+    <p>
+      <button type="submit">Create Account</button>
+    </p>
+  </form>
+{% endblock %}

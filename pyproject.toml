@@ -1,0 +1,17 @@
+[project]
+name = "tramazing"
+version = "0.1.0"
+description = "Old-school Flask potluck site with accounts, recipes, and comments"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

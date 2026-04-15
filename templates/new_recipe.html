@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Post a Recipe</h2>
+  <form method="post" enctype="multipart/form-data">
+    <p>
+      <label for="title">Recipe Title</label><br>
+      <input id="title" name="title" type="text" maxlength="120" required size="60">
+    </p>
+    <p>
+      <label for="description">Short Description</label><br>
+      <input id="description" name="description" type="text" maxlength="180" required size="80">
+    </p>
+    <p>
+      <label for="thumbnail">Thumbnail Image</label><br>
+      <input id="thumbnail" name="thumbnail" type="file" accept=".gif,.jpeg,.jpg,.png,.webp,image/*">
+    </p>
+    <p>
+      <button type="submit">Post Recipe</button>
+    </p>
+  </form>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tramazing Potluck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="page">
+      <center>
+        <h1>Tramazing Potluck</h1>
+      </center>
+
+      <p class="nav">
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if g.user %}
+          | <a href="{{ url_for('create_recipe') }}">Post a Recipe</a>
+          | Logged in as <strong>{{ g.user['username'] }}</strong>
+          | <a href="{{ url_for('logout') }}">Log Out</a>
+        {% else %}
+          | <a href="{{ url_for('register') }}">Register</a>
+          | <a href="{{ url_for('login') }}">Log In</a>
+        {% endif %}
+      </p>
+
+      <hr>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <table class="message-table" border="1" cellpadding="8" cellspacing="0" width="100%">
+            <tr>
+              <th>Message Board</th>
+            </tr>
+            {% for message in messages %}
+              <tr>
+                <td>{{ message }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+          <br>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

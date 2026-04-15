@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #efefef;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.page {
+    width: 90%;
+    max-width: 960px;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 1px solid #000000;
+    padding: 16px;
+}
+
+.nav {
+    text-align: center;
+}
+
+a {
+    color: #0000cc;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+th {
+    background: #d9d9d9;
+    text-align: left;
+}
+
+input,
+textarea,
+button {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+}
+
+textarea {
+    max-width: 100%;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: "Times New Roman", Times, serif;
+    margin-bottom: 0;
+}
+
+.message-table {
+    background: #fffff0;
+}
+
+.thumbnail-preview,
+.detail-thumbnail {
+    border: 1px solid #000000;
+    padding: 2px;
+    background: #ffffff;
+}
+
+.thumbnail-preview {
+    max-width: 160px;
+    max-height: 120px;
+}
+
+.detail-thumbnail {
+    max-width: 320px;
+    max-height: 240px;
+}

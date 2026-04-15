@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+      <th>{{ recipe['title'] }}</th>
+    </tr>
+    <tr>
+      <td>
+        <strong>Cook:</strong> {{ recipe['username'] }}<br>
+        <strong>Posted:</strong> {{ recipe['created_at'] }}<br>
+        <strong>Description:</strong> {{ recipe['description'] }}
+        {% if recipe['thumbnail_filename'] %}
+          <br><br>
+          <img
+            src="{{ url_for('static', filename='uploads/' ~ recipe['thumbnail_filename']) }}"
+            alt="Thumbnail for {{ recipe['title'] }}"
+            class="detail-thumbnail"
+          >
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+
+  {% if g.user and g.user['id'] == recipe['user_id'] %}
+    <p>
+      <a href="{{ url_for('edit_recipe', recipe_id=recipe['id']) }}">Edit Recipe</a>
+    </p>
+    <form method="post" action="{{ url_for('delete_recipe', recipe_id=recipe['id']) }}">
+      <button type="submit">Delete Recipe</button>
+    </form>
+  {% endif %}
+
+  <h2>Comments</h2>
+  <table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+      <th>Potluck Notes</th>
+    </tr>
+    {% for comment in comments %}
+      <tr>
+        <td>
+          <strong>{{ comment['username'] }}</strong> wrote on {{ comment['created_at'] }}:<br>
+          {{ comment['body'] }}
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td>No comments yet.</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% if g.user %}
+    <h3>Leave a Comment</h3>
+    <form method="post" action="{{ url_for('add_comment', recipe_id=recipe['id']) }}">
+      <p>
+        <textarea name="body" rows="6" cols="80" required></textarea>
+      </p>
+      <p>
+        <button type="submit">Post Comment</button>
+      </p>
+    </form>
+  {% else %}
+    <p><a href="{{ url_for('login') }}">Log in</a> to leave a comment.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Recipe</h2>
+  <form method="post" enctype="multipart/form-data">
+    <p>
+      <label for="title">Recipe Title</label><br>
+      <input id="title" name="title" type="text" maxlength="120" required size="60" value="{{ recipe['title'] }}">
+    </p>
+    <p>
+      <label for="description">Short Description</label><br>
+      <input id="description" name="description" type="text" maxlength="180" required size="80" value="{{ recipe['description'] }}">
+    </p>
+    <p>
+      <label for="thumbnail">Thumbnail Image</label><br>
+      <input id="thumbnail" name="thumbnail" type="file" accept=".gif,.jpeg,.jpg,.png,.webp,image/*">
+      {% if recipe['thumbnail_filename'] %}
+        <br>
+        <small>Current file: {{ recipe['thumbnail_filename'] }}</small>
+      {% endif %}
+    </p>
+    <p>
+      <button type="submit">Save Changes</button>
+    </p>
+  </form>
+{% endblock %}

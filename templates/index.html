@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+      <th colspan="4">Latest Potluck Recipes</th>
+    </tr>
+    <tr>
+      <th>Recipe</th>
+      <th>Cook</th>
+      <th>Posted</th>
+      <th>Comments</th>
+    </tr>
+    {% for recipe in recipes %}
+      <tr>
+        <td>
+          {% if recipe['thumbnail_filename'] %}
+            <img
+              src="{{ url_for('static', filename='uploads/' ~ recipe['thumbnail_filename']) }}"
+              alt="Thumbnail for {{ recipe['title'] }}"
+              class="thumbnail-preview"
+            ><br>
+          {% endif %}
+          <a href="{{ url_for('recipe_detail', recipe_id=recipe['id']) }}">{{ recipe['title'] }}</a><br>
+          <small>{{ recipe['description'] }}</small>
+        </td>
+        <td>{{ recipe['username'] }}</td>
+        <td>{{ recipe['created_at'] }}</td>
+        <td>{{ recipe['comment_count'] }}</td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="4">
+          No recipes have been posted yet.
+          {% if g.user %}
+            <a href="{{ url_for('create_recipe') }}">Be the first cook.</a>
+          {% else %}
+            <a href="{{ url_for('register') }}">Create an account</a> to get started.
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
